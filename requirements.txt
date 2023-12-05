@@ -1,0 +1,4 @@
+PyQt5~=5.15.10
+future~=0.18.2
+requests~=2.22.0
+pillow~=7.0.0
