@@ -1,8 +1,10 @@
 import logging
 import os
+import sys
 from logging.handlers import *
 
 def setup_logging(filename='log/run.log', level=logging.INFO):
+    setting_workdir()
     """
     设置日志格式
     :param filename: 日志文件名
@@ -25,6 +27,14 @@ def setup_logging(filename='log/run.log', level=logging.INFO):
     timed_handler.setFormatter(formatter)
     logger.addHandler(timed_handler)
     return logger
+
+def setting_workdir():
+    # sys.args[0]获取文件的真实路径，其他方法获取的会是cmd的路径
+    path = sys.argv[0]
+    # 获取工作目录
+    work_path = os.path.dirname(path)
+    # 切换工作目录，不切换执行程序.exe的目录还是cmd的路径
+    os.chdir(work_path)
 
 logger = setup_logging()
 
